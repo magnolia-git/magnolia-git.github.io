@@ -5,19 +5,23 @@
 		<script src="scripts.js"></script>
 	</head>
 
-	<body>
+	<body onload="run()">
 
-		<div>
-			<h1>Audio API Test</h1>
-			<button onClick="run()">
-				Load
-			</button>
-			<button data-playing="false" role="switch" aria-checked="false" id="press">
-				<span>Play</span>
-			</button>
+		<div id="content">
+			<div>
+				<h1>Audio API Test</h1>
+				<button data-playing="false" role="switch" aria-checked="false" id="press" onclick="clapped()">
+					<span>Play</span>
+				</button>
 
-			<audio crossOrigin="anonymous" src="https://magnolia-git.github.io/untitled2.mp3" id="untitled" />
+
+				<audio crossOrigin="anonymous" src="https://magnolia-git.github.io/untitled2.mp3" id="untitled" />
+			</div>
+			<div>
+				<img src="https://magnolia-git.github.io/clap.png" alt="clap" id="clap"/>
+			</div>
 		</div>
+
 	</body>
 
 </html>

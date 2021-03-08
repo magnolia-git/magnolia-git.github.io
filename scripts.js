@@ -1,6 +1,6 @@
+var context = new (window.AudioContext || window.webkitAudioContext)();
+
 function run() {
-	// for legacy browsers
-	const context = new (window.AudioContext || window.webkitAudioContext)();
 
 	// get the audio element
 	const audioElement = document.querySelector('#untitled');
@@ -12,26 +12,34 @@ function run() {
 	track.connect(context.destination);
 
 	// select our play button
-	const playButton = document.querySelector('#press');
+	const playButton = document.querySelector('button');
 
 	playButton.addEventListener('mousedown', function() {
 
+		document.getElementById('clap').className = 'clapped';
 	    // check if context is in suspended state (autoplay policy)
 	    if (context.state === 'suspended') {
 	        context.resume();
 	    }
-
-	    // play or pause track depending on state
+	    // play sound
 	    if (this.dataset.playing === 'false') {
 	        audioElement.play();
 	        this.dataset.playing = 'true';
 	    } else if (this.dataset.playing === 'true') {
 	        audioElement.currentTime = 0;
+
 	    }
+			while (!this.dataset.playing) {
+				console.log("playing");
+			}
 
 	}, false);
 
 	audioElement.addEventListener('ended', () => {
 	    playButton.dataset.playing = 'false';
 	}, false);
+}
+
+function clapped() {
+	document.getElementById('clap').className = '';
 }
